@@ -24,7 +24,7 @@ const db = client.db(databaseName)
 
 
 
-   db.collection('users').findOne({name:'maggie'},(error, user) =>{
+   db.collection('users').findOne({_id: new ObjectID("609122d9a6793e3ac0a32615")},(error, user) =>{
        if(error){
            return console.log(`unable to fetch`);
        }
