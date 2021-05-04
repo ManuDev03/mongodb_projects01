@@ -24,11 +24,25 @@ const db = client.db(databaseName)
 
 
 
-   db.collection('users').findOne({_id: new ObjectID("609122d9a6793e3ac0a32615")},(error, user) =>{
-       if(error){
-           return console.log(`unable to fetch`);
-       }
-       console.log(user);
+
+
+//    db.collection('users').findOne({_id: new ObjectID("609122d9a6793e3ac0a32615")},(error, user) =>{
+//        if(error){
+//            return console.log(`unable to fetch`);
+//        }
+//        console.log(user);
+//    })
+
+   db.collection('users').find({ age: 23}).toArray((error, users) => {
+       console.log(users);
    })
+
+   db.collection('users').find({ age: 23}).count((error, users) => {
+    console.log(users);
+})
+
+// db.collection('tasks').findOne({_id: new ObjectID("6091256aa77ed33b54a4aaf1")}, (error,task) => {
+//     console.log(task);
+// })
 
 })
