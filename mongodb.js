@@ -14,8 +14,30 @@ console.log(`connected correctly`);
 
 const db = client.db(databaseName)
 
-db.collection('users').insertOne({
-    name:"Manu Maverik",
-    hobbies:"flying jets,riding"
-})
+// db.collection('users').insertOne({
+//     name:"Manu Maverik",
+//     hobbies:"flying jets,riding"
+// }, (error, result) => {
+//     if(error){
+//         return console.log(`unable to insert user`);
+//     }
+//     console.log(result.ops);
+// })
+
+
+    db.collection('users').insertMany([
+        {
+            name:'maggie',
+            age:25
+        },
+        {
+            name:'maverik',
+            age:23
+        }
+    ], (error, result) => {
+        if(error){
+            return console.log(`unable to insert documents`);
+        }
+        console.log(result.ops);
+    })
 })
