@@ -33,16 +33,24 @@ const db = client.db(databaseName)
 //        console.log(user);
 //    })
 
-   db.collection('users').find({ age: 23}).toArray((error, users) => {
-       console.log(users);
-   })
+//    db.collection('users').find({ age: 23}).toArray((error, users) => {
+//        console.log(users);
+//    })
 
-   db.collection('users').find({ age: 23}).count((error, users) => {
-    console.log(users);
+//    db.collection('users').find({ age: 23}).count((error, users) => {
+//     console.log(users);
+// })
+
+db.collection('tasks').findOne({_id: new ObjectID("6091256aa77ed33b54a4aaf1")}, (error,task) => {
+    console.log(task);
 })
 
-// db.collection('tasks').findOne({_id: new ObjectID("6091256aa77ed33b54a4aaf1")}, (error,task) => {
-//     console.log(task);
+// db.collection('tasks').find({completed: false}).toArray((error,task) =>{
+//     console.log(task)
 // })
+db.collection('tasks').find({completed: false}).count((error,task) =>{
+    console.log(task)
+})
+
 
 })
