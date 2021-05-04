@@ -25,19 +25,41 @@ const db = client.db(databaseName)
 // })
 
 
-    db.collection('users').insertMany([
+    // db.collection('users').insertMany([
+    //     {
+    //         name:'maggie',
+    //         age:25
+    //     },
+    //     {
+    //         name:'maverik',
+    //         age:23
+    //     }
+    // ], (error, result) => {
+    //     if(error){
+    //         return console.log(`unable to insert documents`);
+    //     }
+    //     console.log(result.ops);
+    // })
+
+    db.collection('tasks').insertMany([
         {
-            name:'maggie',
-            age:25
+            description: "go for a trip",
+            completed: true
         },
         {
-            name:'maverik',
-            age:23
+            description:"go do a adventure",
+            completed: false
+        },
+        {
+            description:'pot plants',
+            completed:false
         }
     ], (error, result) => {
-        if(error){
-            return console.log(`unable to insert documents`);
+        if (error){
+            return console.log(`unable to insert tasks`);
         }
         console.log(result.ops);
     })
+
+
 })
