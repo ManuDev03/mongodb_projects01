@@ -1,35 +1,38 @@
-// CRUD create Read Update Delete
+// CRUD create read update delete
 
+const { MongoClient, ObjectID } = require('mongodb')
 
-
-const {MongoClient, ObjectID} = require('mongodb')
-
-
-const connnectionURL = 'mongodb://127.0.0.1:27017'
+const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
 
-const id = new ObjectID()
-console.log(id)
-console.log(id.getTimestamp())
-
-MongoClient.connect(connnectionURL,{ useNewUrlParser: true},(err,client) => {
-if(err){
-    return console.log(`unable to connect to database`);
-}
-console.log(`connected correctly`);
-
-const db = client.db(databaseName)
-
- db.collection('users').updateOne({
-    _id: new ObjectID("609122d9a6793e3ac0a32614")
-}, {
-    $inc:{
-        age: -5
+MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
+    if (error) {
+        return console.log('Unable to connect to database!')
     }
-}).then((result) =>{
-    console.log(result);
-}).catch((error) => {
-    console.log(error);
-})
 
+    const db = client.db(databaseName)
+    
+    // db.collection('users').updateOne({
+    //     _id: new ObjectID("5c0fe6634362c1fb75b9d6b5")
+    // }, {
+    //     $inc: {
+    //         age: 1
+    //     }
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+    db.collection('tasks').updateMany({
+        completed: false
+    }, {
+        $set: {
+            completed: true
+        }
+    }).then((result) => {
+        console.log(result.modifiedCount)
+    }).catch((error) => {
+        console.log(error)
+    })
 })
