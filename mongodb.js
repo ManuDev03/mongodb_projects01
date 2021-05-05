@@ -20,15 +20,13 @@ console.log(`connected correctly`);
 
 const db = client.db(databaseName)
 
-
-const updatePromise = db.collection('users').updateOne({
+ db.collection('users').updateOne({
     _id: new ObjectID("609122d9a6793e3ac0a32614")
 }, {
-    $set:{
-        name:"mike"
+    $inc:{
+        age: -5
     }
-})
-updatePromise.then((result) =>{
+}).then((result) =>{
     console.log(result);
 }).catch((error) => {
     console.log(error);
