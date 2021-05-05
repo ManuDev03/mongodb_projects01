@@ -6,6 +6,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api',{
     useCreateIndex: true
 })
 
+// Add password field to User
+// 1. Setup the field as a required string
+// 2.ensure the length is greater than 6
+// 3. trim the password
+// 4.   ensure the password doesnot contain "password"
+
+
 const User = mongoose.model('User', {
     name: 
     {
@@ -26,6 +33,18 @@ const User = mongoose.model('User', {
             }
         }
     },
+    password:
+    {
+        type: String,
+        required: true,
+        minlength: 7,
+        trim: true,
+        validate(value) {
+            if(value.toLowerCase().includes('password')){
+                throw new Error('Password cannot contain "password"')
+            }
+        }
+    },
     age:
     {
         type: Number,
@@ -41,7 +60,8 @@ const User = mongoose.model('User', {
 // model instance
 const me = new User({
     name: '        Mike',
-    email: 'Mike@gmail.com'
+    email: 'Mike@gmail.com',
+    password:'mike123'
 
 })
 
