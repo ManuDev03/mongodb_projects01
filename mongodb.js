@@ -12,11 +12,13 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     const db = client.db(databaseName)
     
-    db.collection('users').deleteMany({
-        name:"Mohanlal"
+    db.collection('users').deleteOne({
+        name:"Manu Maverik"
     }).then((result) => {
         console.log(result);
     }).catch((error) =>{
         console.log(error);
     })
+
+
 })
