@@ -49,6 +49,31 @@ app.post('/tasks', (req, res) => {
         res.status(400).send(e)
     })
 })
+// setup a task reading endpoints
+app.get('/tasks', (req,res) => {
+    Task.find({}).then((task) => {
+        res.send(task)
+    }).catch((e) => {
+        res.status(500).send()
+    })
+})
+
+// creating fetch point for fetching a task by its id
+
+app.get('/tasks/:id',(req,res) => {
+    const _id = req.params.id
+
+    Task.findById(_id).then((task) => {
+        if (!task){
+            return res.status(400).send()
+        }
+
+        res.send(task)
+    }).catch((e) => {
+        res.status(500).send()
+    })
+})
+// setup new request in postman and test your work
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
