@@ -23,6 +23,9 @@ const myFunction = async () => {
 
     console.log(password);
     console.log(hashedPassword);
+
+    const isMatch = await bcrypt.compare('max12345', hashedPassword)
+    console.log(isMatch);
 }
 
 myFunction()
