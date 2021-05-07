@@ -2,21 +2,13 @@ const express = require('express')
 require('./db/mongoose')
 const User = require('./models/user')
 const Task = require('./models/task')
+const userRouter = require('./routers/user')
 
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
-
-const router = new express.Router()
-router.get('/test',(req,res) => {
-    res.send('this is from the router')
-})
-
-// register router in express app
-app.use(router)
-
-
+app.use(userRouter)
 
 app.post('/users', async (req, res) => {
     const user = new User(req.body)
